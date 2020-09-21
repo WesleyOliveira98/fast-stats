@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Statistic</title>
+        <link rel="stylesheet" type="text/css" href="./css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="./js/descritiva.js"></script>
+    </head>
+
+    <body>
+    <div align="middle">
+        <label>Estatistica Descritiva</label>
+        <div>
+        <input id="nomeVar" name="nomeVar" placeholder="Nome da Varíavel">
+        <br />
+        <input id="dados" name="dados" placeholder="Dados separados por (;)">
+        </div>          
+        <div>
+            <select id="tipoVariavel" name="tipoVariavel">
+                <option>Escolha</option>
+                <option value="nominal">Nominal</option>
+                <option value="ordinal">Ordinal</option>
+                <option value="discreta">Discreta</option>
+                <option value="continua">Contínua</option>
+            </select>
+        </div>
+
+        <div>       
+        <label>Amostra</label>
+        <input name="AP" type="radio" value="amostra">
+        <label>População</label>
+        <input name="AP" type="radio" value="população">
+        </div>    
+                    
+        <button type="button" onclick="descritiva()">Calcular</button>
+
+        <div class="tabela-descritiva">
+            <table id="scrolling" class="table table-sm table-light">
+                <thead>
+                <tr>
+                    <th scope="col" id="nameVar"></th>
+                    <th scope="col" id="fi"></th>
+                </tr>
+                </thead>
+                <tbody id="tabelaDescritiva"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    </body>
+
+</html>
