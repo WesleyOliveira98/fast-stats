@@ -1,3 +1,34 @@
 body {
     text-align: center;
 }
+.entrada-de-dados {
+    text-align: center;
+}
+.entrada-opcoes{
+    text-align: center;
+}
+.tabela-descritiva{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.tabela-descritiva2{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.tabela-descritiva3{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.tabela-separatriz{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.graficos {
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+}
