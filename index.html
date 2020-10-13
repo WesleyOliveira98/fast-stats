@@ -2,7 +2,7 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
-        <title>Statistic</title>
+        <title>Fast Stats</title>
         <link rel="stylesheet" type="text/css" href="./css/main.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
@@ -12,7 +12,7 @@
 
     <body>
     <div align="middle">
-        <h1>Estatistica Descritiva</h1
+        <h1>Estatistica Descritiva</h1>
         <div class="entrada-de-dados">
             <label>Nome da Variavel</label><br />
             <input id="nomeVar" name="nomeVar" placeholder="Digite o Nome da Varíavel" size="30"><br />
@@ -51,7 +51,8 @@
             </select><br /><br /> 
             <button type="button" class="btn btn-dark" onclick="descritiva()">Calcular</button><br /><br /> 
         </div> 
-
+        <div class="ordinal" id="ordinal"></div> <br />
+        <div class="btnordinal" id="btnordinal"></div> <br />
         <div class="tabela-descritiva" id="tabela-descritiva"></div>
         <div class="tabela-descritiva2" id="tabela-descritiva2"></div>
         <div class="tabela-descritiva3" id="tabela-descritiva3"></div>
