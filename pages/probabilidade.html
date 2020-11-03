@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Fast Stats</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="../js/probabilidade.js"></script>
+        
+    </head>
+
+    <body>
+    <div class="navbar">
+        <a href="../index.html">Descritiva</a>
+        <a href="./pages/probabilidade.html">Probabilidade</a>
+    </div>
+    <div align="middle">
+        <h1>Probabilidade</h1>
+        <div class="entrada-de-dados">
+            <label>Nome da Variavel</label><br />
+            <input id="nomeVar" name="nomeVar" placeholder="Digite o Nome da Varíavel" size="30"><br />
+            <label>Dados</label><br />
+            <input id="dados" name="dados" placeholder="Digite os dados separados por (;)" size="30"><br /><br />
+            <input type="file" id="upload" accept=".xls,.xlsx"><br /><br />
+        </div> 
+
+        <div class="entrada-opcoes">
+            <label>Tipo de Variavel</label><br />
+            <select id="tipoVariavel" name="tipoVariavel">
+                <option value="escolha">Escolha</option>
+                <option value="nominal">Nominal</option>
+                <option value="ordinal">Ordinal</option>
+                <option value="discreta">Discreta</option>
+                <option value="continua">Contínua</option>
+            </select><br /><br /> 
+            <div id="options-group" class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="bntPopAmo btn btn-primary">
+                <input name="AP" type="radio" id="população"checked>População
+                </label>    
+                <label  class="bntPopAmo btn btn-primary">
+                <input name="AP" type="radio" id="amostra"> Amostra
+                </label>
+            </div><br /><br /> 
+            <label">Medidas Separatrizes</label><br /> 
+            <select id="OpMedidaSeparatriz" name="OpMedidaSeparatriz" onchange="opms()">
+                <option value="0">Escolha</option>
+                <option value="4">Quartil</option>
+                <option value="5">Quintil</option>
+                <option value="10">Decil</option>
+                <option value="100">Porcentil</option>
+            </select>
+            <select id="MedidaSeparatriz" name="MedidaSeparatriz">
+                <option>Escolha</option>
+            </select><br /><br /> 
+            <button type="button" class="btn btn-dark" onclick="descritiva()">Calcular</button><br /><br /> 
+        </div> 
+        <div class="ordinal" id="ordinal"></div> <br />
+        <div class="btnordinal" id="btnordinal"></div> <br />
+        <div class="tabela-descritiva" id="tabela-descritiva"></div>
+        <div class="tabela-descritiva2" id="tabela-descritiva2"></div>
+        <div class="tabela-descritiva3" id="tabela-descritiva3"></div>
+        <div class="tabela-separatriz" id="tabela-separatriz"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous"></script>
+        <div class="graficos">
+            <canvas class="chart"></canvas>
+        </div>
+    </div>
+    
+    </body>
+
+</html>
