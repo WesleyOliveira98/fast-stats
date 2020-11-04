@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Uniforme</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="../js/probabilidade.js"></script>
+        
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="./descritiva.html">Descritiva</a>
+            <a href="./probabilidade.html">Probabilidade</a>
+            <a href="./correlacao.html">Correlação</a>
+            <a href="./about.html">Sobre</a>
+        </div>
+    <div align="middle">
+        <h1>Probabilidade</h1>
+        <h3>Uniforme</h3>
+    </div>
+    <div class="entrada-de-dados">
+        <label>Ponto Mínimo</label><br />
+        <input id="pMinimo" name="pMinimo" placeholder="Digite a quantidade da amostra" size="30"><br /><br />
+        <label>Ponto Máximo</label><br />
+        <input id="pMaximo" name="pMaximo" placeholder="Digite a taxa de sucesso" size="30"><br /><br />
+        <select id="opUniforme" name="opUniforme" onchange="opUniforme()">
+            <option value="0">Escolha</option>
+            <option value="maior">Maior que</option>
+            <option value="entre">Entre</option>
+            <option value="menor">Menor que</option>
+        </select><br /><br /> 
+        <div id="inputUniforme"></div><br /><br /> 
+        <button type="button" class="btn btn-dark" onclick="uniforme()">Calcular</button>
+    </div> 
+    </body>
+
+</html>

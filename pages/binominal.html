@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Binominal</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="../js/probabilidade.js"></script>
+        
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="./descritiva.html">Descritiva</a>
+            <a href="./probabilidade.html">Probabilidade</a>
+            <a href="./correlacao.html">Correlação</a>
+            <a href="./about.html">Sobre</a>
+        </div>
+    <div align="middle">
+        <h1>Probabilidade</h1>
+        <h3>Binominal</h3>
+    </div>
+    <div class="entrada-de-dados">
+        <label>Amostra</label><br />
+        <input id="amostra" name="amostra" placeholder="Digite a quantidade da amostra" size="30"><br /><br />
+        <label>Taxa de Sucesso</label><br />
+        <input id="taxaS" name="taxaS" placeholder="Digite a taxa de sucesso" size="30"><br /><br />
+        <label>Taxa de Fracasso</label><br />
+        <input id="taxaF" name="taxaF" placeholder="Digite a taxa de fracasso" size="30"><br /><br />
+        <label>Eventos</label><br />
+        <input id="eventos" name="eventos" placeholder="Digite os eventos separados por (;)" size="30"><br /><br />
+        <button type="button" class="btn btn-dark" onclick="binominal()">Calcular</button>
+    </div> 
+    </body>
+
+</html>

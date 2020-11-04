@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Correlação</title>
+        <link rel="stylesheet" type="text/css" href="../css/main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="../js/correlacao.js"></script>
+        
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="./descritiva.html">Descritiva</a>
+            <a href="./probabilidade.html">Probabilidade</a>
+            <a href="./correlacao.html">Correlação</a>
+            <a href="./about.html">Sobre</a>
+        </div>
+    <div align="middle">
+        <h1>Correlação e Regressão</h1>
+    </div>
+    <div class="entrada-de-dados">
+        <label>Digite os valores de X</label><br />
+        <input id="dadosX" name="dadosX" placeholder="Digite os dados separados por (;)" size="30"><br /><br />
+        <label>Digite os valores de Y</label><br />
+        <input id="dadosY" name="dadosY" placeholder="Digite os dados separados por (;)" size="30"><br /><br />
+        <button type="button" class="btn btn-dark" onclick="correlacao()">Calcular</button>
+    </div> 
+    </body>
+
+</html>
