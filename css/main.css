@@ -56,3 +56,10 @@ body {
     background: #ddd;
     color: black;
 }
+.categoria {
+    margin-top: 5%;
+}
+footer {
+    float: inline-end;
+    text-align: center;
+}
