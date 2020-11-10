@@ -1,6 +1,13 @@
 body {
     text-align: center;
 }
+main{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #A9A9A9;
+    border-radius: 20px;
+}
 .entrada-de-dados {
     text-align: center;
 }
