@@ -17,18 +17,18 @@
             <a href="./probabilidade.html">Probabilidade</a>
             <a href="./correlacao.html">Correlação</a>
             <a href="./about.html">Sobre</a>
-        </div>
+        </div><br>
     <main>
-        <h1>Estatistica Descritiva</h1>
+        <h1>Estatistica Descritiva</h1><br>
         <div class="entrada-de-dados">
             <div>
                 <label>Nome da Variavel </label>
                 <input id="nomeVar" name="nomeVar" placeholder="Digite o Nome da Varíavel" size="30">
-            </div>
+            </div><br>
             <div>
                 <label>Dados </label>
                 <input id="dados" name="dados" placeholder="Digite os dados separados por (;)" size="30">
-            </div>
+            </div><br>
             <div>
                 <input type="file" id="upload" accept=".xls,.xlsx">
             </div><br>
@@ -44,7 +44,7 @@
                     <option value="discreta">Discreta</option>
                     <option value="continua">Contínua</option>
                 </select>
-            </div>
+            </div><br>
             <div id="options-group" class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark">
                 <input name="AP" type="radio" id="população"checked>População
@@ -52,7 +52,7 @@
                 <label  class="btn btn-dark">
                 <input name="AP" type="radio" id="amostra"> Amostra
                 </label>
-            </div>
+            </div><br><br>
             <div>
                 <label>Medidas Separatrizes</label>
                 <select id="OpMedidaSeparatriz" name="OpMedidaSeparatriz" onchange="opms()">
@@ -66,21 +66,21 @@
                 <select id="MedidaSeparatriz" name="MedidaSeparatriz">
                     <option>Escolha</option>
                 </select>
-            </div>
+            </div><br>
             <div>
                 <button type="button" class="btn btn-dark" onclick="descritiva()">Calcular</button>
-            </div>
+            </div><br>
         </div> 
-        <div class="ordinal" id="ordinal"></div> 
-        <div class="btnordinal" id="btnordinal"></div> 
-        <div class="tabela-descritiva" id="tabela-descritiva"></div>
-        <div class="tabela-descritiva2" id="tabela-descritiva2"></div>
-        <div class="tabela-descritiva3" id="tabela-descritiva3"></div>
-        <div class="tabela-separatriz" id="tabela-separatriz"></div>
+        <div class="ordinal" id="ordinal"></div><br> 
+        <div class="btnordinal" id="btnordinal"></div><br> 
+        <div class="tabela-descritiva" id="tabela-descritiva"></div><br>
+        <div class="tabela-descritiva2" id="tabela-descritiva2"></div><br>
+        <div class="tabela-descritiva3" id="tabela-descritiva3"></div><br>
+        <div class="tabela-separatriz" id="tabela-separatriz"></div><br>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous"></script>
         <div class="graficos">
             <canvas class="chart"></canvas>
-        </div>
+        </div><br>
     </main>
     </body>
 
