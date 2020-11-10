@@ -6,37 +6,45 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-        <script src="./js/descritiva.js"></script>
+        <script src="../js/descritiva.js"></script>
         
     </head>
 
-    <body>
-    <div class="navbar">
-        <a href="../index.html">Home</a>
-        <a href="./descritiva.html">Descritiva</a>
-        <a href="./probabilidade.html">Probabilidade</a>
-        <a href="./correlacao.html">Correlação</a>
-        <a href="./about.html">Sobre</a>
-    </div>
-    <div align="middle">
-        <h1>Estatistica Descritiva</h1>
+    <body background="../img/3HeF.gif" bgproperties="fixed">
+        <div class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="./descritiva.html">Descritiva</a>
+            <a href="./probabilidade.html">Probabilidade</a>
+            <a href="./correlacao.html">Correlação</a>
+            <a href="./about.html">Sobre</a>
+        </div><br>
+    <main>
+        <h1>Estatistica Descritiva</h1><br>
         <div class="entrada-de-dados">
-            <label>Nome da Variavel</label><br />
-            <input id="nomeVar" name="nomeVar" placeholder="Digite o Nome da Varíavel" size="30"><br />
-            <label>Dados</label><br />
-            <input id="dados" name="dados" placeholder="Digite os dados separados por (;)" size="30"><br /><br />
-            <input type="file" id="upload" accept=".xls,.xlsx"><br /><br />
+            <div>
+                <label>Nome da Variavel </label>
+                <input id="nomeVar" name="nomeVar" placeholder="Digite o Nome da Varíavel" size="30">
+            </div><br>
+            <div>
+                <label>Dados </label>
+                <input id="dados" name="dados" placeholder="Digite os dados separados por (;)" size="30">
+            </div><br>
+            <div>
+                <input type="file" id="upload" accept=".xls,.xlsx">
+            </div><br>
         </div> 
 
         <div class="entrada-opcoes">
-            <label>Tipo de Variavel</label><br />
-            <select id="tipoVariavel" name="tipoVariavel">
-                <option value="escolha">Escolha</option>
-                <option value="nominal">Nominal</option>
-                <option value="ordinal">Ordinal</option>
-                <option value="discreta">Discreta</option>
-                <option value="continua">Contínua</option>
-            </select><br /><br /> 
+            <div>
+                <label>Tipo de Variavel </label>
+                <select id="tipoVariavel" name="tipoVariavel">
+                    <option value="escolha">Escolha</option>
+                    <option value="nominal">Nominal</option>
+                    <option value="ordinal">Ordinal</option>
+                    <option value="discreta">Discreta</option>
+                    <option value="continua">Contínua</option>
+                </select>
+            </div><br>
             <div id="options-group" class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-dark">
                 <input name="AP" type="radio" id="população"checked>População
@@ -44,32 +52,36 @@
                 <label  class="btn btn-dark">
                 <input name="AP" type="radio" id="amostra"> Amostra
                 </label>
-            </div><br /><br /> 
-            <label">Medidas Separatrizes</label><br /> 
-            <select id="OpMedidaSeparatriz" name="OpMedidaSeparatriz" onchange="opms()">
-                <option value="0">Escolha</option>
-                <option value="4">Quartil</option>
-                <option value="5">Quintil</option>
-                <option value="10">Decil</option>
-                <option value="100">Porcentil</option>
-            </select>
-            <select id="MedidaSeparatriz" name="MedidaSeparatriz">
-                <option>Escolha</option>
-            </select><br /><br /> 
-            <button type="button" class="btn btn-dark" onclick="descritiva()">Calcular</button><br /><br /> 
+            </div><br><br>
+            <div>
+                <label>Medidas Separatrizes</label>
+                <select id="OpMedidaSeparatriz" name="OpMedidaSeparatriz" onchange="opms()">
+                    <option value="0">Escolha</option>
+                    <option value="4">Quartil</option>
+                    <option value="5">Quintil</option>
+                    <option value="10">Decil</option>
+                    <option value="100">Porcentil</option>
+                </select>
+
+                <select id="MedidaSeparatriz" name="MedidaSeparatriz">
+                    <option>Escolha</option>
+                </select>
+            </div><br>
+            <div>
+                <button type="button" class="btn btn-dark" onclick="descritiva()">Calcular</button>
+            </div><br>
         </div> 
-        <div class="ordinal" id="ordinal"></div> <br />
-        <div class="btnordinal" id="btnordinal"></div> <br />
-        <div class="tabela-descritiva" id="tabela-descritiva"></div>
-        <div class="tabela-descritiva2" id="tabela-descritiva2"></div>
-        <div class="tabela-descritiva3" id="tabela-descritiva3"></div>
-        <div class="tabela-separatriz" id="tabela-separatriz"></div>
+        <div class="ordinal" id="ordinal"></div><br> 
+        <div class="btnordinal" id="btnordinal"></div><br> 
+        <div class="tabela-descritiva" id="tabela-descritiva"></div><br>
+        <div class="tabela-descritiva2" id="tabela-descritiva2"></div><br>
+        <div class="tabela-descritiva3" id="tabela-descritiva3"></div><br>
+        <div class="tabela-separatriz" id="tabela-separatriz"></div><br>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous"></script>
         <div class="graficos">
             <canvas class="chart"></canvas>
-        </div>
-    </div>
-    
+        </div><br>
+    </main>
     </body>
 
 </html>
