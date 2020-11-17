@@ -194,7 +194,7 @@ function normal() {
             
             //console.log(scoreZ)
             const prob = (0.5 - Number(scoreZ))*100
-            //console.log((prob).toFixed(2))
+            console.log((prob).toFixed(2))
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
     }
