@@ -113,9 +113,7 @@ function opUniforme() {
     }
 }
 
-function normal() {
-    
-    const z = {
+const z = {
     '0':   [0.0000,0.0040,0.0080,0.0120,0.0160,0.0199,0.0239,0.0279,0.0319,0.0359],
     '0.1': [0.0398,0.0438,0.0478,0.0517,0.0557,0.0596,0.0636,0.0675,0.0714,0.0753],
     '0.2': [0.0793,0.0832,0.0871,0.0910,0.0948,0.0987,0.1026,0.1064,0.1103,0.1141],
@@ -159,6 +157,7 @@ function normal() {
 
 }
 
+function normal() {
     const media = Number(document.getElementById("media").value)
     const desvio = Number(document.getElementById("desvio").value)
     let opNormal = document.getElementById("opNormal").value
@@ -194,7 +193,7 @@ function normal() {
             
             //console.log(scoreZ)
             const prob = (0.5 - Number(scoreZ))*100
-            console.log((prob).toFixed(2))
+            //console.log((prob).toFixed(2))
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
     }
