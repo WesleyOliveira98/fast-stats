@@ -6,18 +6,23 @@
         <link rel="stylesheet" type="text/css" href="../css/main.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <link rel="shortcut icon" href="../img/favicon-fast-stats.ico" type="image/x-icon">
         <script src="../js/descritiva.js"></script>
         
     </head>
 
     <body background="../img/3HeF.gif" bgproperties="fixed">
-        <div class="navbar">
-            <a href="../index.html">Home</a>
-            <a href="./descritiva.html">Descritiva</a>
-            <a href="./probabilidade.html">Probabilidade</a>
-            <a href="./correlacao.html">Correlação</a>
-            <a href="./about.html">Sobre</a>
-        </div><br>
+        <header class="navbar">
+            <a href="../index.html">
+                <img src="../img/menu fast stats.PNG" class="logo">
+            </a>
+            <ul class="menu">
+                <li><a href="./descritiva.html">Descritiva</a></li>
+                <li><a href="./probabilidade.html">Probabilidade</a></li>
+                <li><a href="./correlacao.html">Correlação</a></li>
+                <li><a href="./about.html">Sobre</a></li>
+            </ul>
+        </header><br>
     <main>
         <h1>Estatistica Descritiva</h1><br>
         <div class="entrada-de-dados">
@@ -30,7 +35,7 @@
                 <input id="dados" name="dados" placeholder="Digite os dados separados por (;)" size="30">
             </div><br>
             <div>
-                <input type="file" id="upload" accept=".xls,.xlsx">
+                <input type="file" id="upload" onchange="handleFiles(this.files)" accept=".csv">
             </div><br>
         </div> 
 
@@ -81,7 +86,7 @@
         <div class="graficos">
             <canvas class="chart"></canvas>
         </div><br>
-    </main>
+    </main><br>
     </body>
 
 </html>
