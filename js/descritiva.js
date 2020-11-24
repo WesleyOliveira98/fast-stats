@@ -1,3 +1,62 @@
+function handleFiles(files) {
+    if (window.FileReader) {
+        getAsText(files[0])
+    } else {
+        alert('Função de importação de dados não suportada pelo navegador!')
+    }
+}
+function getAsText(fileToRead) {
+    var reader = new FileReader()    
+    reader.readAsText(fileToRead)
+    reader.onload = loadHandler
+    reader.onerror = errorHandler
+}
+
+function loadHandler(event) {
+    var csv = event.target.result
+    processData(csv)
+}
+
+function processData(csv) {
+    var allTextLines = csv.split(/\r\n|\n/)
+    var lines = []
+
+    for (let i = 0; i < allTextLines.length; i++) {
+        var data = allTextLines[i].split(';')
+            var tarr = []
+            for (var j=0; j<data.length; j++) {
+                tarr.push(data[j])
+            }
+            lines.push(tarr)
+    }
+
+    var nomeVar = lines["0"][0]
+    var dadosCsv = []
+    var dadosCSV = ""
+
+    for (let i2 = 0; i2 < lines.length; i2++) {
+        if ((i2+1) < lines.length){
+        var iString = (i2+1).toString()
+        console.log(iString)
+        dadosCsv[i2] = lines[iString][0]
+        if (i2 < (lines.length - 2)) {
+            dadosCSV += (dadosCsv[i2])+";"
+        } else {
+            dadosCSV += (dadosCsv[i2])
+          }
+        }
+    }
+
+    document.getElementById("nomeVar").value = nomeVar
+    document.getElementById("dados").value = dadosCSV
+}
+  
+  function errorHandler(evt) {
+    if(evt.target.error.name == "NotReadableError") {
+        alert("Canno't read file !");
+    }
+  }
+
 function descritiva() {
     var nameVar = document.getElementById("nomeVar").value
     var dados = document.getElementById("dados").value
@@ -241,11 +300,8 @@ function descritiva() {
             </table>`
             document.getElementById("nome").innerHTML = nameVar
             
-
             let FacO = 0
             let FacPCO = 0
-            
-            
             
             for (i in o){
             
@@ -895,50 +951,40 @@ function descritiva() {
             var FacAnt = 0
             var menorMS = 0
             var fiMS = 0
+            var x = 0
             for (let i = 0; i < ok; i++) {
-                if (posicao < FacVet[i] && FacAnt === 0 && menorMS === 0 && fiMS === 0) {
+                if (posicao < FacVet[i] && x === 0) {
                     FacAnt = FacVet[i-1]
-                    menorMS = menorVet[i]
+                    menorMS = Number(menorVet[i])
                     fiMS = fiGrupoVet[i]
                 }
+                x++
             }
-            console.log(FacAnt)
+            if (FacAnt === undefined) {
+                FacAnt = 0 
+            }
+            console.log(FacVet)
+            console.log(menorVet)
+            console.log(fiGrupoVet)
             console.log(menorMS)
+            console.log(posicao)
+            console.log(FacAnt)
             console.log(fiMS)
+            console.log(intervalo)
             var medidaSeparatriz = menorMS + (((posicao - FacAnt)/fiMS)*intervalo)
-            var ms = `<tr><td>${(medidaSeparatriz).toFixed(2)}</td></tr>`
+            var ms = `<tr><td>${Number(medidaSeparatriz).toFixed(2)}</td></tr>`
             document.getElementById('tabelaSeparatriz').innerHTML = ms
 
              // Gráficos Continua
              var ctx = document.getElementsByClassName("chart")
-             var a1 = '30 |-- 38'
-             var a2 = '38 |-- 46'
-             var a3 = '46 |-- 54'
-             var a4 = '54 |-- 62'
-             var a5 = '62 |-- 70'
-             var a6 = '70 |-- 78'
-             var a7 = '78 |-- 86'
-             var a8 = '86 |-- 94'
-             var a9 = '94 |-- 102'
-             var f1 = 24
-             var f2 = 16
-             var f3 = 10
-             var f4 = 8
-             var f5 = 13
-             var f6 = 5
-             var f7 = 10
-             var f8 = 13
-             var f9 = 1
 
              var grafico = new Chart(ctx, {
                  type:'bar',
                  data:{
-                     //labels: [a1,a2,a3,a4,a5,a6,a7,a8,a9],
                      labels: grupoVet,
                      datasets: [
                          {
                              label: "Dados (%)",
-                             //data: [f1,f2,f3,f4,f5,f6,f7,f8,f9],
                              data: fiPCVet,
                              backgroundColor:[
  
@@ -987,6 +1033,7 @@ function descritiva() {
                  }
              })
         }
+    
     }
 
 
@@ -1037,6 +1084,7 @@ function opms(){
 }
 
 function inputsOrdinal() {
+    document.getElementById("ordinal").innerHTML = ''
     var dados = document.getElementById("dados").value
     var dadosArray = dados.split(";")
     dadosArray.sort()
@@ -1055,79 +1103,6 @@ function inputsOrdinal() {
         }
 }
 function ordinal() {
-    if (typeof ordenada === "undefined") {
-    var dados = document.getElementById("dados").value
-    var nameVar = document.getElementById("nomeVar").value
-    var dadosArray = dados.split(";")
-    dadosArray.sort()
-    
-    let o = dadosArray.filter(function(e, index, self) {
-        return index === self.indexOf(e);
-    })
-
-    //Posições ordinal
-    const idString = []
-    const resInput = []
-    for (let i = 0; i < o.length; i++){
-        idString[i] = "inp"+(i+1)
-        let resInp = document.getElementById(idString[i]).value
-        resInput[i] = resInp
-    }
-    console.log(resInput)
-
-    const ordenada = []
-    for (let i = 0; i < o.length; i++){
-        ordenada[i] = o[(Number(resInput[i])-1)]
-    }
-    console.log(ordenada)
-
-    let fn = []
-    for(var i =0;i < ordenada.length;i++){
-        fn[i] = 0
-        for(var i2 = 0;i2 < dadosArray.length;i2++){
-            if(ordenada[i] === dadosArray[i2]){
-                fn[i]++
-            }
-        }
-    }
-
-    //Tabela Ordinal
-    document.getElementById("tabela-descritiva").innerHTML = ``
-    document.getElementById("tabela-descritiva").innerHTML = `<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col" id="nome"></th>
-        <th scope="col">fi</th>
-        <th scope="col">fi%</th>
-        <th scope="col">Fac</th>
-        <th scope="col">Fac%</th>
-    </tr>
-    </thead>
-    <tbody id="tabelaDescritiva"></tbody>
-    </table>`
-    document.getElementById("nome").innerHTML = nameVar
-
-    let FacO = 0
-    let FacPCO = 0
-    
-    document.getElementById('tabelaDescritiva').innerHTML = ``
-    
-    for (i in ordenada){
-    
-        if (typeof fr === "undefined") {
-            var fr = `<tr><td>${ordenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
-            <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
-            document.getElementById('tabelaDescritiva').innerHTML = fr
-        }
-        else {
-            var fr = fr + `<tr><td>${ordenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
-            <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
-            document.getElementById('tabelaDescritiva').innerHTML = fr
-        }
-    }
-    }
-    //Nova ordenação
-    else {
         var dados = document.getElementById("dados").value
         var nameVar = document.getElementById("nomeVar").value
         var dadosArray = dados.split(";")
@@ -1136,66 +1111,169 @@ function ordinal() {
         let o = dadosArray.filter(function(e, index, self) {
             return index === self.indexOf(e);
         })
-
+        console.log(o)
         //Posições nova ordinal
-        const idString = []
-        const resInput = []
-        for (let i = 0; i < ordenada.length; i++){
+        var idString = []
+        var resInput = []
+        for (let i = 0; i < o.length; i++){
             idString[i] = "inp"+(i+1)
             let resInp = document.getElementById(idString[i]).value
             resInput[i] = resInp
         }
         console.log(resInput)
-        const NovaOrdenada = []
+        var NovaOrdenada = []
         for (let i = 0; i < o.length; i++){
-                NovaOrdenada[i] = o[(Number(resInput[i])-1)]
+            for (let i2 = 0; i2 < resInput.length; i2++) {
+                if (Number(resInput[i2])-1 === i) {
+                    NovaOrdenada[i] = o[i2]
+                }
+            }
+            
         }
-        console.log(NovaOrdenada)
-        let fn = []
-        for(var i =0;i < NovaOrdenada.length;i++){
-            fn[i] = 0
-            for(var i2 = 0;i2 < dadosArray.length;i2++){
-                if(NovaOrdenada[i] === dadosArray[i2]){
-                    fn[i]++
+        if (o.length === NovaOrdenada.length) {
+
+            console.log(NovaOrdenada)
+            var fn = []
+            for(var i =0;i < NovaOrdenada.length;i++){
+                fn[i] = 0
+                for(var i2 = 0;i2 < dadosArray.length;i2++){
+                    if(NovaOrdenada[i] === dadosArray[i2]){
+                        fn[i]++
+                    }
+                }
+            }
+            
+
+            //Tabela Ordinal
+            document.getElementById("tabela-descritiva").innerHTML = ``
+            document.getElementById("tabela-descritiva").innerHTML = `<table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" id="nome"></th>
+                <th scope="col">fi</th>
+                <th scope="col">fi%</th>
+                <th scope="col">Fac</th>
+                <th scope="col">Fac%</th>
+            </tr>
+            </thead>
+            <tbody id="tabelaDescritiva"></tbody>
+            </table>`
+            document.getElementById("nome").innerHTML = nameVar
+
+            let FacO = 0
+            let FacPCO = 0
+            
+            document.getElementById('tabelaDescritiva').innerHTML = ``
+            
+            for (i in NovaOrdenada){
+            
+                if (typeof fr === "undefined") {
+                    var fr = `<tr><td>${NovaOrdenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
+                    <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
+                    document.getElementById('tabelaDescritiva').innerHTML = fr
+                }
+                else {
+                    var fr = fr + `<tr><td>${NovaOrdenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
+                    <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
+                    document.getElementById('tabelaDescritiva').innerHTML = fr
                 }
             }
         }
-        
+        else {
+            alert("Digite uma posição válida")
+        }
 
-        //Tabela Ordinal
-        document.getElementById("tabela-descritiva").innerHTML = ``
-        document.getElementById("tabela-descritiva").innerHTML = `<table class="table">
+        //Segunda Parte da Tabela Ordinal
+
+        document.getElementById("tabela-descritiva2").innerHTML = `<table class="table">
         <thead class="thead-dark">
-        <tr>
-            <th scope="col" id="nome"></th>
-            <th scope="col">fi</th>
-            <th scope="col">fi%</th>
-            <th scope="col">Fac</th>
-            <th scope="col">Fac%</th>
-        </tr>
+            <tr>
+                <th scope="col" id="">Média</th>
+                <th scope="col" id="">Moda</th>
+                <th scope="col" id="">Mediana</th>
+            </tr>
         </thead>
-        <tbody id="tabelaDescritiva"></tbody>
+        <tbody id="tabelaDescritiva2"></tbody>
         </table>`
-        document.getElementById("nome").innerHTML = nameVar
 
-        let FacO = 0
-        let FacPCO = 0
-        
-        document.getElementById('tabelaDescritiva').innerHTML = ``
-        
-        for (i in NovaOrdenada){
-        
-            if (typeof fr === "undefined") {
-                var fr = `<tr><td>${NovaOrdenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
-                <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
-                document.getElementById('tabelaDescritiva').innerHTML = fr
-            }
-            else {
-                var fr = fr + `<tr><td>${NovaOrdenada[i]}</td><td>${fn[i]}</td><td>${Number(((fn[i]*100)/dadosArray.length).toFixed(1))}%</td>
-                <td>${FacO = FacO + Number(fn[i])}</td><td>${Math.round(FacPCO = FacPCO + Number((fn[i]*100)/dadosArray.length))}%</td></tr>`
-                document.getElementById('tabelaDescritiva').innerHTML = fr
+        var modaO = ''
+        var maior = Math.max(...fn)
+        for(var i = 0;i < NovaOrdenada.length;i++){
+            if(fn[i] === maior) {
+                modaO = NovaOrdenada[i]
             }
         }
-    }
 
+        var medianaO = ''
+        if ((NovaOrdenada.length % 2) === 0) { 
+            if (NovaOrdenada[(NovaOrdenada.length/2)-1] === NovaOrdenada[(NovaOrdenada.length/2)]) {
+                medianaO = NovaOrdenada[(NovaOrdenada.length/2)-1]
+            }
+            else {
+                medianaO = NovaOrdenada[(NovaOrdenada.length/2)-1] + " e " + NovaOrdenada[(NovaOrdenada.length/2)]
+            }
+        }
+        else {
+            medianaO = NovaOrdenada[Math.round((NovaOrdenada.length/2)-1)]
+        }
+        var m = `<tr><td>Não tem</td><td>${modaO}</td><td>${medianaO}</td></tr>`
+        document.getElementById('tabelaDescritiva2').innerHTML = m   
+
+        //Tabela Medidas Separatrizes
+
+        document.getElementById("tabela-separatriz").innerHTML = `<table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" id="">Medidas Separatrizes</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaSeparatriz"></tbody>
+        </table>`
+        var medidaSeparatriz = ''
+        var posicao
+        var opcaoSelect = document.getElementById("MedidaSeparatriz").value
+        var op = document.getElementById("OpMedidaSeparatriz").value
+        if (op === "0") {
+            alert('Escolha uma opção de Medida Separatriz')
+        }
+        else if (op === "4") {
+            posicao = Math.round(((NovaOrdenada.length*25)/100) * opcaoSelect)
+            
+            for(let i = 0; i < NovaOrdenada.length; i++){
+                if((posicao - 1) === i){
+                    medidaSeparatriz = NovaOrdenada[i]
+                }
+            }
+            
+        }
+        else if (op === "5") {
+            posicao = Math.round(((NovaOrdenada.length*20)/100) * opcaoSelect)
+            
+            for(let i = 0; i < NovaOrdenada.length; i++){
+                if((posicao - 1) === i){
+                    medidaSeparatriz = NovaOrdenada[i]
+                }
+            }
+        }    
+        else if (op === "10") {
+            posicao = Math.round(((NovaOrdenada.length*10)/100) * opcaoSelect)
+            
+            for(let i = 0; i < NovaOrdenada.length; i++){
+                if((posicao - 1) === i){
+                    medidaSeparatriz = NovaOrdenada[i]
+                }
+            }
+        }
+        else if (op === "100") {
+            posicao = Math.round(((NovaOrdenada.length*1)/100) * opcaoSelect)
+            
+            for(let i = 0; i < NovaOrdenada.length; i++){
+                if((posicao - 1) === i){
+                    medidaSeparatriz = NovaOrdenada[i]
+                }
+            }
+        }
+
+        var ms = `<tr><td>${medidaSeparatriz}</td></tr>`
+        document.getElementById('tabelaSeparatriz').innerHTML = ms
 }
