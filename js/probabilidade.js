@@ -1,3 +1,5 @@
+//Distribuição Binomial
+
 function binomial() {
     const amostra = Number(document.getElementById("amostra").value)
     const taxaSucesso = Number(document.getElementById("taxaS").value)
@@ -63,6 +65,7 @@ function binomial() {
     
 }
 
+//Distribuição Uniforme
 function uniforme() {
     const pMinimo = Number(document.getElementById("pMinimo").value)
     const pMaximo = Number(document.getElementById("pMaximo").value)
@@ -113,6 +116,7 @@ function opUniforme() {
     }
 }
 
+//Matriz da curva de Gauss
 const z = {
     '0':   [0.0000,0.0040,0.0080,0.0120,0.0160,0.0199,0.0239,0.0279,0.0319,0.0359],
     '0.1': [0.0398,0.0438,0.0478,0.0517,0.0557,0.0596,0.0636,0.0675,0.0714,0.0753],
@@ -157,6 +161,7 @@ const z = {
 
 }
 
+//Distribuição Normal
 function normal() {
     const media = Number(document.getElementById("media").value)
     const desvio = Number(document.getElementById("desvio").value)
@@ -357,6 +362,7 @@ function normal() {
     }
 }
 
+//Options Normal
 function opNormal() {
     let opNormal = document.getElementById("opNormal").value
 
