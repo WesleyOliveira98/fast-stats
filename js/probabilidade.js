@@ -167,66 +167,97 @@ function normal() {
 
     if (opNormal == "maior") {
         valor = Number(document.getElementById("valorN").value)
-        var scoreZ = ((valor - media) / desvio).toFixed(2)
+        var scoreZ = (valor - media) / desvio
         if (scoreZ < 0) {
             scoreZ *= (-1)
         }
-        else if (scoreZ > 4){
-            scoreZ = 0.5
-        }
-        //console.log(scoreZ)
+        
+        var scoreZZ = scoreZ.toString()
+        const scoreZArray = scoreZZ.split("")
+            if (scoreZArray.length !== 1 && scoreZArray.length >= 4){
+                var zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                if (zString === "0.0") {
+                    zString = "0"
+                }
+                else if (zString === "1.0") {
+                    zString = "1"
+                }
+                else if (zString === "2.0") {
+                    zString = "2"
+                }
+                else if (zString === "3.0") {
+                    zString = "3"
+                }
+                var zNumber = Number(scoreZArray[3])
+                var resZ = z[zString][zNumber]
+            }
+            else if (scoreZArray.length === 3){
+                var zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                var zNumber = 0
+                var resZ = z[zString][zNumber]
+            }
+            else if (scoreZ >= 4){
+                var resZ = 0.5
+            }
+
         if (valor === media){
-            alert("O valor não pode ser igual a média")
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de 50.00%<h3>`
         }
         else if (valor < media){
-            alert("O valor não pode ser menor que a média")
+            const prob = (0.5 + resZ)*100
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
-        else {
-            var scoreZZ = scoreZ.toString()
-            const scoreZArray = scoreZZ.split("")
-            const zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
-            //console.log(scoreZArray)
-            //console.log(zString)
-            const zNumber = Number(scoreZArray[3])
-            //console.log(zNumber)
-            scoreZ = z[zString][zNumber]
-            
-            //console.log(scoreZ)
-            const prob = (0.5 - Number(scoreZ))*100
-            //console.log((prob).toFixed(2))
+        else if (valor > media){
+            const prob = (0.5 - resZ)*100
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
     }
 
     else if (opNormal == "menor") {
         valor = Number(document.getElementById("valorN").value)
-        var scoreZ = ((valor - media) / desvio).toFixed(2)
+        var scoreZ = (valor - media) / desvio
         if (scoreZ < 0) {
             scoreZ *= (-1)
         }
-        else if (scoreZ > 4){
-            scoreZ = 0.5
-        }
-        //console.log(scoreZ)
+        
+        var scoreZZ = scoreZ.toString()
+        const scoreZArray = scoreZZ.split("")
+            if (scoreZArray.length !== 1 && scoreZArray.length >= 4){
+                var zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                if (zString === "0.0") {
+                    zString = "0"
+                }
+                else if (zString === "1.0") {
+                    zString = "1"
+                }
+                else if (zString === "2.0") {
+                    zString = "2"
+                }
+                else if (zString === "3.0") {
+                    zString = "3"
+                }
+                var zNumber = Number(scoreZArray[3])
+                var resZ = z[zString][zNumber]
+            }
+            else if (scoreZArray.length === 3){
+                var zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                var zNumber = 0
+                var resZ = z[zString][zNumber]
+            }
+            else if (scoreZ >= 4){
+                var resZ = 0.5
+            }
+
+
         if (valor === media){
-            alert("O valor não pode ser igual a média")
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de 50.00%<h3>`
+        }
+        else if (valor < media){
+            const prob = (0.5 - resZ)*100
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
         else if (valor > media){
-            alert("O valor não pode ser maior que a média")
-        }
-        else {
-            var scoreZZ = scoreZ.toString()
-            const scoreZArray = scoreZZ.split("")
-            const zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
-            //console.log(scoreZArray)
-            //console.log(zString)
-            const zNumber = Number(scoreZArray[3])
-            //console.log(zNumber)
-            scoreZ = z[zString][zNumber]
-            
-            //console.log(scoreZ)
-            const prob = (0.5 - Number(scoreZ))*100
-            //console.log((prob).toFixed(2))
+            const prob = (0.5 + resZ)*100
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
     }
@@ -235,67 +266,92 @@ function normal() {
         inicio = Number(document.getElementById("inicioN").value)
         fim = Number(document.getElementById("fimN").value)
 
-        var scoreZI = ((inicio - media) / desvio).toFixed(2)
-        var scoreZF = ((fim - media) / desvio).toFixed(2)
+        var scoreZI = (inicio - media) / desvio
+        var scoreZF = (fim - media) / desvio
         if (scoreZI < 0) {
             scoreZI *= (-1)
         }
-        else if (scoreZI > 4){
-            scoreZI = 0.5
-        }
-        else if (scoreZF < 0) {
+        
+        if (scoreZF < 0) {
             scoreZF *= (-1)
         }
-        else if (scoreZF > 4){
-            scoreZF = 0.5
-        }
-        if (inicio === media){
-            var scoreZZF = scoreZF.toString()
-            const scoreZArray = scoreZZF.split("")
-            const zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
-            
-            const zNumber = Number(scoreZArray[3])
-            scoreZF = z[zString][zNumber]
-            
-            const prob = scoreZF * 100
+
+        var scoreZZF = scoreZF.toString()
+        const scoreZArray = scoreZZF.split("")
+
+            if (scoreZArray.length !== 1 && scoreZArray.length >= 4){
+                var zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                if (zString === "0.0") {
+                    zString = "0"
+                }
+                else if (zString === "1.0") {
+                    zString = "1"
+                }
+                else if (zString === "2.0") {
+                    zString = "2"
+                }
+                else if (zString === "3.0") {
+                    zString = "3"
+                }
+                const zNumber = Number(scoreZArray[3])
+                var resZF = z[zString][zNumber]
+            }
+            else if (scoreZArray.length === 3){
+                const zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
+                const zNumber = 0
+                var resZF = z[zString][zNumber]
+            }
+            else if (scoreZ >= 4){
+                var resZF = 0.5
+            }
+
+        var scoreZZI = scoreZI.toString()
+        const scoreZIArray = scoreZZI.split("")
+
+            if (scoreZIArray.length !== 1 && scoreZIArray.length >= 4){
+                var zIString = (scoreZIArray[0] + "." + scoreZIArray[2]).toString()
+                if (zIString === "0.0") {
+                    zIString = "0"
+                }
+                else if (zIString === "1.0") {
+                    zIString = "1"
+                }
+                else if (zIString === "2.0") {
+                    zIString = "2"
+                }
+                else if (zIString === "3.0") {
+                    zIString = "3"
+                }
+                const zINumber = Number(scoreZIArray[3])
+                var resZI = z[zIString][zINumber]
+            }
+            else if (scoreZIArray.length === 3){
+                const zIString = (scoreZIArray[0] + "." + scoreZIArray[2]).toString()
+                const zINumber = 0
+                var resZI = z[zIString][zINumber]
+            }
+            else if (scoreZ >= 4){
+                var resZI = 0.5
+            }
+
+        if (fim === media){
+            const prob = resZI * 100
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
-        else if (fim === media){
-            var scoreZZI = scoreZI.toString()
-            const scoreZIArray = scoreZZI.split("")
-            const zIString = (scoreZIArray[0] + "." + scoreZIArray[2]).toString()
-            
-            const zINumber = Number(scoreZIArray[3])
-            
-            scoreZI = z[zIString][zINumber]
-            
-            const prob = scoreZI*100
+        else if (inicio === media){
+            const prob = resZF * 100
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
         else if (inicio > media){
-            alert("O valor inicial deve ser menor que a média")
+            const prob = (resZF - resZI)*100
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
         else if (fim < media){
-            alert("O valor final deve ser maior que a média")
+            const prob = (resZI - resZF)*100
+            document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
         else{
-            var scoreZZI = scoreZI.toString()
-            const scoreZIArray = scoreZZI.split("")
-            const zIString = (scoreZIArray[0] + "." + scoreZIArray[2]).toString()
-            
-            const zINumber = Number(scoreZIArray[3])
-            
-            scoreZI = z[zIString][zINumber]
-            
-            
-            var scoreZZF = scoreZF.toString()
-            const scoreZArray = scoreZZF.split("")
-            const zString = (scoreZArray[0] + "." + scoreZArray[2]).toString()
-            
-            const zNumber = Number(scoreZArray[3])
-            scoreZF = z[zString][zNumber]
-            
-            const prob = (scoreZI + scoreZF)*100
+            const prob = (resZI + resZF)*100
             document.getElementById("resNormal").innerHTML = `<h3>A Probabilidade é de ${(prob).toFixed(2)}%<h3>`
         }
     }
