@@ -1,3 +1,5 @@
+//Conversão do arquivo CSV
+
 function handleFiles(files) {
     if (window.FileReader) {
         getAsText(files[0])
@@ -37,7 +39,6 @@ function processData(csv) {
     for (let i2 = 0; i2 < lines.length; i2++) {
         if ((i2+1) < lines.length){
         var iString = (i2+1).toString()
-        console.log(iString)
         dadosCsv[i2] = lines[iString][0]
         if (i2 < (lines.length - 2)) {
             dadosCSV += (dadosCsv[i2])+";"
@@ -769,11 +770,6 @@ function descritiva() {
                 }
                 fiPCVet[i] += (fiGrupoVet[i]*100)/dadosArray.length 
             }
-            //console.log(maiorVet)
-            //console.log(grupoVet)   
-            //console.log(dadosArray)
-            //console.log(c)
-            //console.log(fiGrupoVet)
 
             const FacVet = []
             const FacPCCVet = []
@@ -804,34 +800,6 @@ function descritiva() {
                     document.getElementById('tabelaDescritiva').innerHTML = fr
                 }
             }
-            //let FacC = 0
-            //let FacPCC = 0
-            
-
-            //do{
-            //    var f = 0
-            //    let valor2 = Number(menor) + intervalo
-            //    for (let i2 = 0; i2 < dadosArray.length; i2++) {
-            //        if ((dadosArray[i2] >= menor) && (dadosArray[i2] < valor2)) {
-             //           f++  
-              //      }
-              //  }
-             //   
-              //  if (typeof fr === "undefined") {
-             //       var fr = `<tr><td>${menor} |-- ${valor2}</td><td>${f}</td><td>${((f*100)/dadosArray.length).toFixed(1)}%</td>
-             //       <td>${FacC = FacC + f}</td><td>${FacPCC = Math.round(FacPCC + Number((f*100)/dadosArray.length))}%</td></tr>`
-             //       document.getElementById('tabelaDescritiva').innerHTML = fr
-             //   }
-             //   else {
-              //      var fr = fr + `<tr><td>${menor} |-- ${valor2}</td><td>${f}</td><td>${((f*100)/dadosArray.length).toFixed(1)}%</td>
-              //      <td>${FacC = FacC + f}</td><td>${FacPCC = Math.round(FacPCC + Number((f*100)/dadosArray.length))}%</td></tr>`
-              //      document.getElementById('tabelaDescritiva').innerHTML = fr
-              //  }
-               // menor = valor2
-                
-           // }while(menor <= maior)
-            
-            
             
 
             //Segunda Parte da Tabela Continua
@@ -847,14 +815,12 @@ function descritiva() {
             <tbody id="tabelaDescritiva2"></tbody>
             </table>`
 
-            //var mediaC = 57.68
             
             var somaMedia = 0
             for (let i = 0; i < ok; i++) {
                 somaMedia += (valorMedio[i] * fiGrupoVet[i])
             }
-            var mediaC = somaMedia / dadosArray.length 
-            ///var modaC = '30 |--- 38'
+            var mediaC = somaMedia / dadosArray.length
             var modaC = 0
             var maiorFi = Math.max.apply(null, fiGrupoVet)
             for (let i = 0; i < ok; i++) {
@@ -862,7 +828,6 @@ function descritiva() {
                     modaC = valorMedio[i]
                 }
             }
-            //var medianaC = '46 |-- 54 e 54 |-- 62'
             
             var posicaoMd = Number(dadosArray.length/2)
             var FacAnt = 0
@@ -910,8 +875,6 @@ function descritiva() {
                 desvioPadrao = Math.sqrt(somaDesvio/(dadosArray.length-1))
                 coeficienteVar = (desvioPadrao/mediaC) * 100
             }
-            //var desvioPadrao = 20.43
-            //var coeficienteVar = 35
             
             document.getElementById("tabelaDescritiva3").innerHTML = `<tr><td>${(desvioPadrao).toFixed(2)}</td><td>${Math.round(coeficienteVar)}%</td></tr>`
             
@@ -947,7 +910,7 @@ function descritiva() {
             if (posicao === 0) {
                 posicao = 1
             }
-            console.log(posicao)
+            
             var FacAnt = 0
             var menorMS = 0
             var fiMS = 0
@@ -963,14 +926,6 @@ function descritiva() {
             if (FacAnt === undefined) {
                 FacAnt = 0 
             }
-            console.log(FacVet)
-            console.log(menorVet)
-            console.log(fiGrupoVet)
-            console.log(menorMS)
-            console.log(posicao)
-            console.log(FacAnt)
-            console.log(fiMS)
-            console.log(intervalo)
             var medidaSeparatriz = menorMS + (((posicao - FacAnt)/fiMS)*intervalo)
             var ms = `<tr><td>${Number(medidaSeparatriz).toFixed(2)}</td></tr>`
             document.getElementById('tabelaSeparatriz').innerHTML = ms
@@ -1111,7 +1066,6 @@ function ordinal() {
         let o = dadosArray.filter(function(e, index, self) {
             return index === self.indexOf(e);
         })
-        console.log(o)
         //Posições nova ordinal
         var idString = []
         var resInput = []
@@ -1120,7 +1074,6 @@ function ordinal() {
             let resInp = document.getElementById(idString[i]).value
             resInput[i] = resInp
         }
-        console.log(resInput)
         var NovaOrdenada = []
         for (let i = 0; i < o.length; i++){
             for (let i2 = 0; i2 < resInput.length; i2++) {
@@ -1132,7 +1085,6 @@ function ordinal() {
         }
         if (o.length === NovaOrdenada.length) {
 
-            console.log(NovaOrdenada)
             var fn = []
             for(var i =0;i < NovaOrdenada.length;i++){
                 fn[i] = 0
