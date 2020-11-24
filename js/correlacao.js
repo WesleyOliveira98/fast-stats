@@ -1,3 +1,67 @@
+function handleFiles(files) {
+    if (window.FileReader) {
+        getAsText(files[0])
+    } else {
+        alert('Função de importação de dados não suportada pelo navegador!')
+    }
+}
+function getAsText(fileToRead) {
+    var reader = new FileReader()    
+    reader.readAsText(fileToRead)
+    reader.onload = loadHandler
+    reader.onerror = errorHandler
+}
+
+function loadHandler(event) {
+    var csv = event.target.result
+    processData(csv)
+}
+
+function processData(csv) {
+    var allTextLines = csv.split(/\r\n|\n/)
+    var lines = []
+
+    for (let i = 0; i < allTextLines.length; i++) {
+        var data = allTextLines[i].split(';')
+            var tarr = []
+            for (var j=0; j<data.length; j++) {
+                tarr.push(data[j])
+            }
+            lines.push(tarr)
+    }
+
+    var dados = ""
+    var dadosX = []
+    var dadosXCSV = ""
+    var dadosY = []
+    var dadosYCSV = ""
+    for (let i2 = 0; i2 < lines.length; i2++) {
+        if ((i2+1) < lines.length){
+        var iString = (i2+1).toString()
+        dados = lines[iString][0]
+        var dadosLine = dados.split(",")
+        dadosX[i2] = dadosLine[0]
+        dadosY[i2] = dadosLine[1]
+        if (i2 < (lines.length - 2)) {
+            dadosXCSV += (dadosX[i2])+";"
+            dadosYCSV += (dadosY[i2])+";"
+        } else {
+            dadosXCSV += (dadosX[i2])
+            dadosYCSV += (dadosY[i2])
+          }
+        }
+    }
+
+    document.getElementById("dadosX").value = dadosXCSV
+    document.getElementById("dadosY").value = dadosYCSV
+}
+
+function errorHandler(evt) {
+    if(evt.target.error.name == "NotReadableError") {
+        alert("Canno't read file !");
+    }
+}
+
 function correlacao() {
     const dadosX = document.getElementById("dadosX").value
     const dadosY = document.getElementById("dadosY").value
@@ -86,7 +150,35 @@ function correlacao() {
     <input id="valor" type="text" placeholder="Digite um valor" size="10">
     <button type="button" class="btn btn-dark" onclick="regressao()">Calcular Regressão</button><br><br>
     <h3 id="resRegressao"></h3>`
+
     
+    var chart = document.getElementsByClassName("chart")
+
+    var grafico = new Chart(chart, {
+        type:'line',
+        data:{
+            labels: dadosXArray,
+            datasets: [
+                {
+                    label: "Y",
+                    data: dadosYArray,
+                    borderColor: "#3e95cd",
+                    fill: false
+                }
+                ]
+        },
+        options:{ 
+            scales:{
+                yAxes: [
+                    {
+                        ticks:{
+                            beginAtZero: true
+                        }
+                    }
+                ]
+            }
+        }
+    })
       
 }
 
