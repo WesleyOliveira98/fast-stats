@@ -1,3 +1,5 @@
+//Conversão do arquivo CSV
+
 function handleFiles(files) {
     if (window.FileReader) {
         getAsText(files[0])
@@ -61,6 +63,8 @@ function errorHandler(evt) {
         alert("Canno't read file !");
     }
 }
+
+//Cálculo Correlação
 
 function correlacao() {
     const dadosX = document.getElementById("dadosX").value
@@ -127,7 +131,7 @@ function correlacao() {
     }
     console.log(nivel)
 
-
+    // Tabela Correlação
 
     document.getElementById("tabela-correlacao").innerHTML = `<table class="table">
         <thead class="thead-dark">
@@ -142,6 +146,8 @@ function correlacao() {
 
     document.getElementById("tabelaCorrelacao").innerHTML = `<td>${r}%</td><td>${nivel}</td><td>${equacao}</td>`
 
+    // Projeçãoo de Regressão
+
     document.getElementById("projecao").innerHTML =`<select id="opRegressao">
         <option value="0">Escolha</option>
         <option value="x">X</option>
@@ -151,7 +157,7 @@ function correlacao() {
     <button type="button" class="btn btn-dark" onclick="regressao()">Calcular Regressão</button><br><br>
     <h3 id="resRegressao"></h3>`
 
-    
+    //Gráfico Correlação
     var chart = document.getElementsByClassName("chart")
 
     var grafico = new Chart(chart, {
@@ -182,6 +188,8 @@ function correlacao() {
       
 }
 
+
+//Cálculo Regressão
 function regressao(){
         var opRegressao = document.getElementById("opRegressao").value
         var valor = Number(document.getElementById("valor").value)
